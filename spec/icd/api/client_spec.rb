@@ -26,13 +26,40 @@ RSpec.describe Icd::Api::Client do
     end
   end
 
+  context 'Fetch parent by code' do
+    let(:stem_id) do
+      VCR.use_cassette('by_code_7A01') { client.fetch_stem_id_by_code('7A01') }
+    end
+
+    let(:stem_info) do
+      VCR.use_cassette('by_stemId_1832877760') { client.fetch_info_by_stem_id(stem_id) }
+    end
+
+    let(:response) do
+      VCR.use_cassette('parent_by_code_7A01') { client.fetch_parent_stem_by_code('7A01') }
+    end
+
+    it 'returns stemId information' do
+      expect(stem_id).to eq('http://id.who.int/icd/release/11/2023-01/mms/1832877760')
+    end
+
+    it 'have the parent info inside initial fetch info' do
+      stem_info_h = JSON.parse(stem_info)
+      expect(stem_info_h['parent']).to eq(['http://id.who.int/icd/release/11/2023-01/mms/1038292737'])
+    end
+
+    it 'returns the parent stemId' do
+      expect(response[0]).to eq('http://id.who.int/icd/release/11/2023-01/mms/1038292737')
+    end
+  end
+
   context 'Fetch by Code -- Deprecated' do
     let(:response) do
       VCR.use_cassette('by_code_1F4Z') { client.fetch_stem_id_by_code('1F4Z') }
     end
 
     let(:stem_id_response) do
-      stem_id = response.split('/')[-2]
+      stem_id = response.rpartition('/')[0]
       VCR.use_cassette('by_stemId_1439886552') { client.fetch_info_by_stem_id(stem_id) }
     end
 

@@ -34,6 +34,14 @@ module Icd
       def root_url
         @options[:root_url] ||= DEFAULT_API_ROOT_URL
       end
+
+      def alive=(alive)
+        @options[:alive] = alive
+      end
+
+      def alive
+        @options[:alive] ||= false
+      end
     end
   end
 end
