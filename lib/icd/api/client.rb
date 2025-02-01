@@ -36,6 +36,24 @@ module Icd
         stem_info_h['parent']
       end
 
+      def fetch_top_level_parent_by_code(code)
+        last_parent = ''
+        next_parent = fetch_parent_stem_by_code(code, alive: true)[0]
+
+        stem_code = next_parent.partition('mms')[1]
+        loop do
+          break if stem_code == 'mms'
+
+          last_parent = next_parent
+          stem_info = fetch_info_by_stem_id(last_parent, alive: true)
+          stem_info_h = JSON.parse(stem_info)
+          next_parent = fetch_parent_stem_by_code(stem_info_h['code'], alive: true)[0]
+          stem_code = next_parent.partition('mms')[1]
+        end
+
+        last_parent
+      end
+
       def fetch_stem_id_by_code(code, alive: false)
         response = if alive == true
                      alive_connection.get("codeinfo/#{code}", { flexiblemode: 'false' })
