@@ -29,30 +29,31 @@ module Icd
         end
       end
 
-      def fetch_parent_stem_by_code(code)
-        stem_id = fetch_stem_id_by_code(code, alive: true)
-        stem_info = fetch_info_by_stem_id(stem_id, alive: true)
+      def fetch_parent_stem_by_code(code, alive: true)
+        stem_id = fetch_stem_id_by_code(code, alive:)
+        stem_info = fetch_info_by_stem_id(stem_id, alive:)
         stem_info_h = JSON.parse(stem_info)
         stem_info_h['parent']
       end
 
+      # rubocop:disable Metrics/MethodLength
       def fetch_top_level_parent_by_code(code)
         last_parent = ''
         next_parent = fetch_parent_stem_by_code(code, alive: true)[0]
-
-        stem_code = next_parent.partition('mms')[1]
+        stem_code = parse_entity_id(next_parent)
         loop do
-          break if stem_code == 'mms'
+          break if stem_code.nil?
 
           last_parent = next_parent
           stem_info = fetch_info_by_stem_id(last_parent, alive: true)
           stem_info_h = JSON.parse(stem_info)
-          next_parent = fetch_parent_stem_by_code(stem_info_h['code'], alive: true)[0]
-          stem_code = next_parent.partition('mms')[1]
+          next_parent = stem_info_h['parent'][0]
+          stem_code = parse_entity_id(next_parent)
         end
 
-        last_parent
+        parse_entity_id(last_parent)
       end
+      # rubocop:enable Metrics/MethodLength
 
       def fetch_stem_id_by_code(code, alive: false)
         response = if alive == true
@@ -96,7 +97,9 @@ module Icd
 
       def parse_entity_id(stem_id)
         entity_id = stem_id.split('/').last
-        entity_id = stem_id.split('/')[-2] if entity_id == 'unknown'
+        return stem_id.split('/')[-2] if entity_id == 'unknown'
+
+        return nil unless entity_id =~ /\d/
 
         entity_id
       end
