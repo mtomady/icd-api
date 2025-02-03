@@ -1,0 +1,275 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://icdaccessmanagement.who.int/connect/token
+    body:
+      encoding: UTF-8
+      string: client_id=&client_secret=&grant_type=client_credentials&scope=icdapi_access
+    headers:
+      User-Agent:
+      - Faraday v<%= Faraday::VERSION %>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Fri, 31 Jan 2025 13:08:57 GMT
+      Server:
+      - Kestrel
+      Cache-Control:
+      - no-store, no-cache, max-age=0
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - ASP.NET
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2OTA4MTE5MTksImV4cCI6MTY5MDgxNTUxOSwiaXNzIjoiaHR0cHM6Ly9pY2RhY2Nlc3NtYW5hZ2VtZW50Lndoby5pbnQiLCJhdWQiOlsiaHR0cHM6Ly9pY2RhY2Nlc3NtYW5hZ2VtZW50Lndoby5pbnQvcmVzb3VyY2VzIiwiaWNkYXBpIl0sImNsaWVudF9pZCI6IjkxOTZkZGE2LTFiMmUtNGI2My1iODYwLTQzZGQ4YmVhZjdhY181YzA0M2Q0ZC05ZGUzLTQwMDAtOGI5Zi0wMzFkNDZiZmZkNWEiLCJzY29wZSI6WyJpY2RhcGlfYWNjZXNzIl19.RX_XX5bAgKaHn-2_p03_y75h1ZuVYJoi4TOX0wEJxhQLUaBqP9TyyFAXSUcaxMncf1faFHUxsPAawj9xUVjwHXEMAUwGn_bnaVQc4UK0k6_IYTq3dq7-QrNtZXVK6G8GZOpnZ6Y4LeyoD4lPMa-mE8QAHT2OnJQym3BtWRA4516GEHFp99Cai-sfCnTdTK4nKvkpK9TLp8vJ-iKoX0l5SvqIh-CePJYs8YiNV4wAu-4m3wH1HWLyvLiI-S6VpK_dSS8LR-KDBN13s1vHhjuqNlSoRpCexVyE37RgZZyyYoXxhwrpIeU5M0mrtE3uRt2UO4VIMn9aNZZfJGBpFa8nbg","expires_in":3600,"token_type":"Bearer"}'
+  recorded_at: Fri, 31 Jan 2025 13:08:58 GMT
+
+- request:
+    method: get
+    uri: https://id.who.int/icd/release/11/2023-01/mms/codeinfo/7A01?flexiblemode=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Api-Version:
+      - v2
+      Accept-Language:
+      - en
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2OTA4MTE5MTksImV4cCI6MTY5MDgxNTUxOSwiaXNzIjoiaHR0cHM6Ly9pY2RhY2Nlc3NtYW5hZ2VtZW50Lndoby5pbnQiLCJhdWQiOlsiaHR0cHM6Ly9pY2RhY2Nlc3NtYW5hZ2VtZW50Lndoby5pbnQvcmVzb3VyY2VzIiwiaWNkYXBpIl0sImNsaWVudF9pZCI6IjkxOTZkZGE2LTFiMmUtNGI2My1iODYwLTQzZGQ4YmVhZjdhY181YzA0M2Q0ZC05ZGUzLTQwMDAtOGI5Zi0wMzFkNDZiZmZkNWEiLCJzY29wZSI6WyJpY2RhcGlfYWNjZXNzIl19.RX_XX5bAgKaHn-2_p03_y75h1ZuVYJoi4TOX0wEJxhQLUaBqP9TyyFAXSUcaxMncf1faFHUxsPAawj9xUVjwHXEMAUwGn_bnaVQc4UK0k6_IYTq3dq7-QrNtZXVK6G8GZOpnZ6Y4LeyoD4lPMa-mE8QAHT2OnJQym3BtWRA4516GEHFp99Cai-sfCnTdTK4nKvkpK9TLp8vJ-iKoX0l5SvqIh-CePJYs8YiNV4wAu-4m3wH1HWLyvLiI-S6VpK_dSS8LR-KDBN13s1vHhjuqNlSoRpCexVyE37RgZZyyYoXxhwrpIeU5M0mrtE3uRt2UO4VIMn9aNZZfJGBpFa8nbg
+      User-Agent:
+      - Faraday v<%= Faraday::VERSION %>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 31 Jul 2023 13:58:40 GMT
+      Server:
+      - Microsoft-IIS/10.0
+      Access-Control-Expose-Headers:
+      - API-Version
+      Cache-Control:
+      - public,max-age=36000
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept, Accept-Language, API-Version,Accept-Encoding
+      Request-Context:
+      - appId=cid-v1:1862a212-e319-456e-be6e-745dfd3d92c2
+      Api-Version:
+      - v2.3.0
+      X-Powered-By:
+      - ASP.NET
+    body:
+      encoding: ASCII-8BIT
+      string: '{
+        "@context":"http://id.who.int/icd/contexts/contextForCodeInfo.json",
+        "@id":"http://id.who.int/icd/release/11/2022-02/mms/codeinfo/7A01",
+        "code":"7A01",
+        "stemId":"http://id.who.int/icd/release/11/2023-01/mms/1832877760"}'
+  recorded_at: Mon, 31 Jul 2023 13:58:39 GMT
+
+- request:
+    method: get
+    uri: https://id.who.int/icd/release/11/2023-01/mms/1832877760
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Api-Version:
+      - v2
+      Accept-Language:
+      - en
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2OTA4MTE5MTksImV4cCI6MTY5MDgxNTUxOSwiaXNzIjoiaHR0cHM6Ly9pY2RhY2Nlc3NtYW5hZ2VtZW50Lndoby5pbnQiLCJhdWQiOlsiaHR0cHM6Ly9pY2RhY2Nlc3NtYW5hZ2VtZW50Lndoby5pbnQvcmVzb3VyY2VzIiwiaWNkYXBpIl0sImNsaWVudF9pZCI6IjkxOTZkZGE2LTFiMmUtNGI2My1iODYwLTQzZGQ4YmVhZjdhY181YzA0M2Q0ZC05ZGUzLTQwMDAtOGI5Zi0wMzFkNDZiZmZkNWEiLCJzY29wZSI6WyJpY2RhcGlfYWNjZXNzIl19.RX_XX5bAgKaHn-2_p03_y75h1ZuVYJoi4TOX0wEJxhQLUaBqP9TyyFAXSUcaxMncf1faFHUxsPAawj9xUVjwHXEMAUwGn_bnaVQc4UK0k6_IYTq3dq7-QrNtZXVK6G8GZOpnZ6Y4LeyoD4lPMa-mE8QAHT2OnJQym3BtWRA4516GEHFp99Cai-sfCnTdTK4nKvkpK9TLp8vJ-iKoX0l5SvqIh-CePJYs8YiNV4wAu-4m3wH1HWLyvLiI-S6VpK_dSS8LR-KDBN13s1vHhjuqNlSoRpCexVyE37RgZZyyYoXxhwrpIeU5M0mrtE3uRt2UO4VIMn9aNZZfJGBpFa8nbg
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 31 Jan 2025 15:38:04 GMT
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - Kestrel
+      Access-Control-Expose-Headers:
+      - API-Version
+      Www-Authenticate:
+      - Bearer
+      X-Ms-Middleware-Request-Id:
+      - 00000000-0000-0000-0000-000000000000
+      Request-Context:
+      - appId=cid-v1:3692af4e-f946-4d84-ac02-a6950a2a57f5
+      Api-Version:
+      - v2.4.0
+      Accept:
+      - text/html
+    body:
+      encoding: UTF-8
+      string: '{
+        "@context":"http://id.who.int/icd/contexts/contextForLinearizationEntity.json",
+        "@id":"http://id.who.int/icd/release/11/2023-01/mms/1832877760",
+        "parent":["http://id.who.int/icd/release/11/2023-01/mms/1038292737"],
+        "browserUrl":"https://icd.who.int/browse/2023-01/mms/fr#1832877760",
+        "code":"7A01","source":"http://id.who.int/icd/entity/1832877760","classKind":"category",
+        "postcoordinationScale":[
+          {"@id":"http://id.who.int/icd/release/11/2023-01/mms/1832877760/postcoordinationScale/hasSeverity",
+          "axisName":"http://id.who.int/icd/schema/hasSeverity",
+          "requiredPostcoordination":"false",
+          "allowMultipleValues":"NotAllowed",
+          "scaleEntity":["http://id.who.int/icd/release/11/2023-01/mms/562478860","http://id.who.int/icd/release/11/2023-01/mms/1663264387","http://id.who.int/icd/release/11/2023-01/mms/1201187093"]}],
+          "title":{"@language":"fr","@value":"Insomnie transitoire"},
+          "definition":{"@language":"fr","@value":"L\u0027insomnie \u00E0 court terme est caract\u00E9ris\u00E9e par des difficult\u00E9s d\u0027endormissement ou de maintien du sommeil d\u0027une dur\u00E9e de moins de 3 mois, survenant malgr\u00E9 des circonstances et des conditions ad\u00E9quates pour le sommeil, et entra\u00EEne une insatisfaction g\u00E9n\u00E9rale du sommeil et une certaine forme de faiblesse diurne. Les sympt\u00F4mes diurnes incluent typiquement une fatigue, une humeur d\u00E9pressive ou une irritabilit\u00E9, un malaise g\u00E9n\u00E9ral et une atteinte cognitive. Les personnes qui signalent des sympt\u00F4mes li\u00E9s au sommeil en l\u0027absence de troubles diurnes ne sont pas consid\u00E9r\u00E9es comme souffrant d\u0027insomnie. Si l\u0027insomnie est due \u00E0 un autre trouble veille-sommeil, \u00E0 un trouble mental, \u00E0 un autre probl\u00E8me m\u00E9dical, \u00E0 une substance ou \u00E0 un m\u00E9dicament, l\u0027insomnie \u00E0 court terme ne doit \u00EAtre diagnostiqu\u00E9e que si l\u0027insomnie fait l\u0027objet d\u0027un examen clinique ind\u00E9pendant."},
+          "indexTerm":[{"label":{"@language":"fr","@value":"Insomnie transitoire"}},{"label":{"@language":"fr","@value":"Insomnie aig\u00FCe"}}
+        ]}'
+  recorded_at: Fri, 31 Jan 2025 15:38:04 GMT
+
+- request:
+    method: get
+    uri: https://id.who.int/icd/release/11/2023-01/mms/1038292737
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Api-Version:
+      - v2
+      Accept-Language:
+      - en
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2OTA4MTE5MTksImV4cCI6MTY5MDgxNTUxOSwiaXNzIjoiaHR0cHM6Ly9pY2RhY2Nlc3NtYW5hZ2VtZW50Lndoby5pbnQiLCJhdWQiOlsiaHR0cHM6Ly9pY2RhY2Nlc3NtYW5hZ2VtZW50Lndoby5pbnQvcmVzb3VyY2VzIiwiaWNkYXBpIl0sImNsaWVudF9pZCI6IjkxOTZkZGE2LTFiMmUtNGI2My1iODYwLTQzZGQ4YmVhZjdhY181YzA0M2Q0ZC05ZGUzLTQwMDAtOGI5Zi0wMzFkNDZiZmZkNWEiLCJzY29wZSI6WyJpY2RhcGlfYWNjZXNzIl19.RX_XX5bAgKaHn-2_p03_y75h1ZuVYJoi4TOX0wEJxhQLUaBqP9TyyFAXSUcaxMncf1faFHUxsPAawj9xUVjwHXEMAUwGn_bnaVQc4UK0k6_IYTq3dq7-QrNtZXVK6G8GZOpnZ6Y4LeyoD4lPMa-mE8QAHT2OnJQym3BtWRA4516GEHFp99Cai-sfCnTdTK4nKvkpK9TLp8vJ-iKoX0l5SvqIh-CePJYs8YiNV4wAu-4m3wH1HWLyvLiI-S6VpK_dSS8LR-KDBN13s1vHhjuqNlSoRpCexVyE37RgZZyyYoXxhwrpIeU5M0mrtE3uRt2UO4VIMn9aNZZfJGBpFa8nbg
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 31 Jan 2025 15:38:04 GMT
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - Kestrel
+      Access-Control-Expose-Headers:
+      - API-Version
+      Www-Authenticate:
+      - Bearer
+      X-Ms-Middleware-Request-Id:
+      - 00000000-0000-0000-0000-000000000000
+      Request-Context:
+      - appId=cid-v1:3692af4e-f946-4d84-ac02-a6950a2a57f5
+      Api-Version:
+      - v2.4.0
+      Accept:
+      - text/html
+    body:
+      encoding: UTF-8
+      string: '{
+        "@context":"http://id.who.int/icd/contexts/contextForLinearizationEntity.json",
+        "@id":"http://id.who.int/icd/release/11/2023-01/mms/1038292737",
+        "parent":["http://id.who.int/icd/release/11/2023-01/mms/274880002"],
+        "child":["http://id.who.int/icd/release/11/2023-01/mms/323148092","http://id.who.int/icd/release/11/2023-01/mms/1832877760","http://id.who.int/icd/release/11/2023-01/mms/1038292737/unspecified"],
+        "browserUrl":"https://icd.who.int/browse/2023-01/mms/fr#1038292737",
+        "code":"","source":"http://id.who.int/icd/entity/1038292737","classKind":"block","blockId":"BlockL1-7A0",
+        "codeRange":"7A00-7A0Z","title":{"@language":"fr","@value":"Insomnie"},
+        "definition":{"@language":"fr","@value":"Les troubles de l\u0027insomnie se caract\u00E9risent par une difficult\u00E9 persistante d\u2019endormissement, de maintien et de consolidation du sommeil ou d\u2019am\u00E9lioration de sa qualit\u00E9, malgr\u00E9 une situation et des circonstances propices au sommeil, et qui perturbe la vie du sujet dans la journ\u00E9e. Les sympt\u00F4mes diurnes comprennent g\u00E9n\u00E9ralement la fatigue, une humeur d\u00E9pressive ou une irritabilit\u00E9, un malaise g\u00E9n\u00E9ral et des troubles cognitifs. Les sujets qui signalent des sympt\u00F4mes li\u00E9s au sommeil sans pr\u00E9senter de troubles diurnes ne sont pas consid\u00E9r\u00E9s comme souffrant d\u0027un trouble de l\u2019insomnie."}
+        }'
+  recorded_at: Fri, 31 Jan 2025 15:38:04 GMT
+
+- request:
+    method: get
+    uri: https://id.who.int/icd/release/11/2023-01/mms/274880002
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Api-Version:
+      - v2
+      Accept-Language:
+      - en
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2OTA4MTE5MTksImV4cCI6MTY5MDgxNTUxOSwiaXNzIjoiaHR0cHM6Ly9pY2RhY2Nlc3NtYW5hZ2VtZW50Lndoby5pbnQiLCJhdWQiOlsiaHR0cHM6Ly9pY2RhY2Nlc3NtYW5hZ2VtZW50Lndoby5pbnQvcmVzb3VyY2VzIiwiaWNkYXBpIl0sImNsaWVudF9pZCI6IjkxOTZkZGE2LTFiMmUtNGI2My1iODYwLTQzZGQ4YmVhZjdhY181YzA0M2Q0ZC05ZGUzLTQwMDAtOGI5Zi0wMzFkNDZiZmZkNWEiLCJzY29wZSI6WyJpY2RhcGlfYWNjZXNzIl19.RX_XX5bAgKaHn-2_p03_y75h1ZuVYJoi4TOX0wEJxhQLUaBqP9TyyFAXSUcaxMncf1faFHUxsPAawj9xUVjwHXEMAUwGn_bnaVQc4UK0k6_IYTq3dq7-QrNtZXVK6G8GZOpnZ6Y4LeyoD4lPMa-mE8QAHT2OnJQym3BtWRA4516GEHFp99Cai-sfCnTdTK4nKvkpK9TLp8vJ-iKoX0l5SvqIh-CePJYs8YiNV4wAu-4m3wH1HWLyvLiI-S6VpK_dSS8LR-KDBN13s1vHhjuqNlSoRpCexVyE37RgZZyyYoXxhwrpIeU5M0mrtE3uRt2UO4VIMn9aNZZfJGBpFa8nbg
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 31 Jan 2025 15:38:04 GMT
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - Kestrel
+      Access-Control-Expose-Headers:
+      - API-Version
+      Www-Authenticate:
+      - Bearer
+      X-Ms-Middleware-Request-Id:
+      - 00000000-0000-0000-0000-000000000000
+      Request-Context:
+      - appId=cid-v1:3692af4e-f946-4d84-ac02-a6950a2a57f5
+      Api-Version:
+      - v2.4.0
+      Accept:
+      - text/html
+    body:
+      encoding: UTF-8
+      string: '{
+        "@context":"http://id.who.int/icd/contexts/contextForLinearizationEntity.json",
+        "@id":"http://id.who.int/icd/release/11/2023-01/mms/274880002",
+        "parent":["http://id.who.int/icd/release/11/2023-01/mms"],
+        "child":["http://id.who.int/icd/release/11/2023-01/mms/1038292737","http://id.who.int/icd/release/11/2023-01/mms/2024456840","http://id.who.int/icd/release/11/2023-01/mms/877557231","http://id.who.int/icd/release/11/2023-01/mms/1359329403","http://id.who.int/icd/release/11/2023-01/mms/49589409","http://id.who.int/icd/release/11/2023-01/mms/151357345","http://id.who.int/icd/release/11/2023-01/mms/274880002/other","http://id.who.int/icd/release/11/2023-01/mms/274880002/unspecified"],
+        "browserUrl":"https://icd.who.int/browse/2023-01/mms/fr#274880002","code":"07","source":"http://id.who.int/icd/entity/274880002",
+        "classKind":"chapter","title":{"@language":"fr","@value":"Troubles du cycle veille-sommeil"},
+        "definition":{"@language":"fr","@value":"Les troubles veille-sommeil se caract\u00E9risent par une difficult\u00E9 d\u2019endormissement ou de maintien du sommeil (troubles de l\u0027insomnie), une somnolence excessive (troubles de l\u0027hypersomnolence), des troubles respiratoires durant le sommeil (troubles respiratoires li\u00E9s au sommeil), des troubles du rythme veille-sommeil (troubles du rythme circadien veille-sommeil), des mouvements anormaux pendant le sommeil (troubles de la motricit\u00E9 li\u00E9s au sommeil), ou des \u00E9v\u00E9nements comportementaux ou physiologiques probl\u00E9matiques qui surviennent au moment de l\u0027endormissement, durant le sommeil ou lors de l\u0027\u00E9veil (troubles de la parasomnie)."}}'
+  recorded_at: Fri, 31 Jan 2025 15:38:04 GMT
+
+recorded_with: VCR 6.2.0

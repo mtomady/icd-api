@@ -29,16 +29,49 @@ module Icd
         end
       end
 
-      def fetch_stem_id_by_code(code)
-        response = connection.get("codeinfo/#{code}", { flexiblemode: 'false' })
+      def fetch_parent_stem_by_code(code, alive: true)
+        stem_id = fetch_stem_id_by_code(code, alive:)
+        stem_info = fetch_info_by_stem_id(stem_id, alive:)
+        stem_info_h = JSON.parse(stem_info)
+        stem_info_h['parent']
+      end
 
+      # rubocop:disable Metrics/MethodLength
+      def fetch_top_level_parent_by_code(code)
+        last_parent = ''
+        next_parent = fetch_parent_stem_by_code(code, alive: true)[0]
+        stem_code = parse_entity_id(next_parent)
+        loop do
+          break if stem_code.nil?
+
+          last_parent = next_parent
+          stem_info = fetch_info_by_stem_id(last_parent, alive: true)
+          stem_info_h = JSON.parse(stem_info)
+          next_parent = stem_info_h['parent'][0]
+          stem_code = parse_entity_id(next_parent)
+        end
+
+        parse_entity_id(last_parent)
+      end
+      # rubocop:enable Metrics/MethodLength
+
+      def fetch_stem_id_by_code(code, alive: false)
+        response = if alive == true
+                     alive_connection.get("codeinfo/#{code}", { flexiblemode: 'false' })
+                   else
+                     connection.get("codeinfo/#{code}", { flexiblemode: 'false' })
+                   end
         response.body['stemId']
       end
 
-      def fetch_info_by_stem_id(stem_id)
-        entity_id = stem_id.split('/').last
-        entity_id = stem_id.split('/')[-2] if entity_id == 'unknown'
-        response = connection.get(entity_id, {})
+      def fetch_info_by_stem_id(stem_id, alive: false)
+        entity_id = parse_entity_id(stem_id)
+        response = if alive == true
+                     alive_connection.get(entity_id, {})
+                   else
+                     connection.get(entity_id, {})
+                   end
+
         response.body
       end
 
@@ -53,8 +86,22 @@ module Icd
           includePostcoordination: 'true' }
       end
 
+      def alive_connection
+        @options.alive = true
+        @alive_connection ||= Connection.new(@client_id, @client_secret, @options)
+      end
+
       def connection
         Connection.new(@client_id, @client_secret, @options)
+      end
+
+      def parse_entity_id(stem_id)
+        entity_id = stem_id.split('/').last
+        return stem_id.split('/')[-2] if entity_id == 'unknown'
+
+        return nil unless entity_id =~ /\d/
+
+        entity_id
       end
     end
   end
