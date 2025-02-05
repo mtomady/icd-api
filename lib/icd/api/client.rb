@@ -37,8 +37,9 @@ module Icd
       end
 
       # rubocop:disable Metrics/MethodLength
-      def fetch_top_level_parent_by_code(code)
+      def fetch_toplevel_category_by_code(code)
         last_parent = ''
+        last_parent_info = {}
         next_parent = fetch_parent_stem_by_code(code)
         stem_code = parse_entity_id(next_parent)
         loop do
@@ -50,7 +51,7 @@ module Icd
           stem_code = parse_entity_id(next_parent)
         end
 
-        parse_entity_id(last_parent)
+        parse_title_value(last_parent_info)
       end
       # rubocop:enable Metrics/MethodLength
 
@@ -106,9 +107,17 @@ module Icd
       def parse_parent_stem_id(stem_info)
         stem_info_h = JSON.parse(stem_info)
 
-        return unless stem_info_h.key? 'parent'
+        return nil unless stem_info_h.key? 'parent'
 
         stem_info_h['parent'][0]
+      end
+
+      def parse_title_value(stem_info)
+        stem_info_h = JSON.parse(stem_info)
+
+        return nil unless stem_info_h.key? 'classKind'
+
+        stem_info_h['title']['@value']
       end
     end
   end
