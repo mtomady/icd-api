@@ -29,29 +29,29 @@ module Icd
         end
       end
 
-      def fetch_parent_stem_by_code(code, alive: true)
-        stem_id = fetch_stem_id_by_code(code, alive:)
-        stem_info = fetch_info_by_stem_id(stem_id, alive:)
-        stem_info_h = JSON.parse(stem_info)
-        stem_info_h['parent']
+      def fetch_parent_stem_by_code(code)
+        stem_id = fetch_stem_id_by_code(code, alive: true)
+        stem_info = fetch_info_by_stem_id(stem_id, alive: true)
+
+        parse_parent_stem_id(stem_info)
       end
 
       # rubocop:disable Metrics/MethodLength
-      def fetch_top_level_parent_by_code(code)
+      def fetch_toplevel_category_by_code(code)
         last_parent = ''
-        next_parent = fetch_parent_stem_by_code(code, alive: true)[0]
+        last_parent_info = {}
+        next_parent = fetch_parent_stem_by_code(code)
         stem_code = parse_entity_id(next_parent)
         loop do
           break if stem_code.nil?
 
           last_parent = next_parent
-          stem_info = fetch_info_by_stem_id(last_parent, alive: true)
-          stem_info_h = JSON.parse(stem_info)
-          next_parent = stem_info_h['parent'][0]
+          last_parent_info = fetch_info_by_stem_id(last_parent, alive: true)
+          next_parent = parse_parent_stem_id(last_parent_info)
           stem_code = parse_entity_id(next_parent)
         end
 
-        parse_entity_id(last_parent)
+        parse_title_value(last_parent_info)
       end
       # rubocop:enable Metrics/MethodLength
 
@@ -102,6 +102,22 @@ module Icd
         return nil unless entity_id =~ /\d/
 
         entity_id
+      end
+
+      def parse_parent_stem_id(stem_info)
+        stem_info_h = JSON.parse(stem_info)
+
+        return nil unless stem_info_h.key? 'parent'
+
+        stem_info_h['parent'][0]
+      end
+
+      def parse_title_value(stem_info)
+        stem_info_h = JSON.parse(stem_info)
+
+        return nil unless stem_info_h.key? 'classKind'
+
+        stem_info_h['title']['@value']
       end
     end
   end

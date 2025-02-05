@@ -82,10 +82,10 @@ http_interactions:
       - appId=cid-v1:3692af4e-f946-4d84-ac02-a6950a2a57f5
       Api-Version:
       - v2.4.0
-      Accept:
-      - text/html
+      Content-Type:
+      - application/json;
     body:
-      encoding: UTF-8
+      encoding: ASCII-8BIT
       string: '{
         "@context":"http://id.who.int/icd/contexts/contextForLinearizationEntity.json",
         "@id":"http://id.who.int/icd/release/11/2023-01/mms/1832877760",

@@ -44,27 +44,25 @@ RSpec.describe Icd::Api::Client do
     end
 
     it 'have the parent info inside initial fetch info' do
-      stem_info_h = JSON.parse(stem_info)
-      expect(stem_info_h['parent']).to eq(['http://id.who.int/icd/release/11/2023-01/mms/1038292737'])
+      expect(stem_info['parent']).to eq(['http://id.who.int/icd/release/11/2023-01/mms/1038292737'])
     end
 
     it 'have the code of current fetch from stem id' do
-      stem_info_h = JSON.parse(stem_info)
-      expect(stem_info_h['code']).to eq('7A01')
+      expect(stem_info['code']).to eq('7A01')
     end
 
     it 'returns the parent stemId' do
-      expect(response[0]).to eq('http://id.who.int/icd/release/11/2023-01/mms/1038292737')
+      expect(response).to eq('http://id.who.int/icd/release/11/2023-01/mms/1038292737')
     end
   end
 
-  context 'Fetch top level parent by code' do
+  context 'Fetch top level category by code' do
     let(:response) do
-      VCR.use_cassette('toplevel_parent_by_code_7A01') { client.fetch_top_level_parent_by_code('7A01') }
+      VCR.use_cassette('toplevel_parent_by_code_7A01') { client.fetch_toplevel_category_by_code('7A01') }
     end
 
     it 'returns expected stemid' do
-      expect(response).to eq('274880002')
+      expect(response).to eq('Troubles du cycle veille-sommeil')
     end
   end
 
