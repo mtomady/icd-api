@@ -105,19 +105,18 @@ module Icd
       end
 
       def parse_parent_stem_id(stem_info)
-        stem_info_h = JSON.parse(stem_info)
+        stem_info = JSON.parse(stem_info) unless stem_info.is_a? Hash
+        return nil unless stem_info.key? 'parent'
 
-        return nil unless stem_info_h.key? 'parent'
-
-        stem_info_h['parent'][0]
+        stem_info['parent'][0]
       end
 
       def parse_title_value(stem_info)
-        stem_info_h = JSON.parse(stem_info)
+        stem_info = JSON.parse(stem_info) unless stem_info.is_a? Hash
 
-        return nil unless stem_info_h.key? 'classKind'
+        return nil unless stem_info.key? 'title'
 
-        stem_info_h['title']['@value']
+        stem_info['title']['@value']
       end
     end
   end
