@@ -44,17 +44,15 @@ RSpec.describe Icd::Api::Client do
     end
 
     it 'have the parent info inside initial fetch info' do
-      stem_info_h = JSON.parse(stem_info)
-      expect(stem_info_h['parent']).to eq(['http://id.who.int/icd/release/11/2023-01/mms/1038292737'])
+      expect(stem_info['parent']).to eq(['http://id.who.int/icd/release/11/2023-01/mms/1038292737'])
     end
 
     it 'have the code of current fetch from stem id' do
-      stem_info_h = JSON.parse(stem_info)
-      expect(stem_info_h['code']).to eq('7A01')
+      expect(stem_info['code']).to eq('7A01')
     end
 
     it 'returns the parent stemId' do
-      expect(response[0]).to eq('http://id.who.int/icd/release/11/2023-01/mms/1038292737')
+      expect(response).to eq('http://id.who.int/icd/release/11/2023-01/mms/1038292737')
     end
   end
 
