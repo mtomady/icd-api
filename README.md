@@ -22,7 +22,21 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Search medical condition
+`client_api.search(term)`
+
+### Get infos from entity_id
+`fetch_info_by_stem_id(entity_id)`
+
+### Get stem_id from medical condition code
+`fetch_stem_id_by_code(code)`
+
+### Get parent entity_id from medical condition code
+`fetch_parent_stem_by_code(code)`
+
+### Get toplevel category from medical condition code
+`fetch_toplevel_category_by_code(code)`
+### 
 
 ## Development
 
