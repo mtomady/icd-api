@@ -96,6 +96,8 @@ module Icd
       end
 
       def parse_entity_id(stem_id)
+        return nil if stem_id.nil?
+
         entity_id = stem_id.split('/').last
         return stem_id.split('/')[-2] if entity_id == 'unknown'
 
